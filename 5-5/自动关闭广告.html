@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>自动关闭广告</title>
+</head>
+<body>
+	<h1>五秒后自动关闭图片（广告）</h1>
+	<img src="img/look.gif" alt="广告图片" class="ad">
+
+
+	<script type="text/javascript">
+		var ad = document.querySelector('.ad');
+		setTimeout(function(){
+			ad.style.display = 'none';
+		},5000);
+	</script>
+</body>
+</html>
