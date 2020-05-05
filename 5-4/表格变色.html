@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表格变色</title>
+	<style type="text/css">
+		.xiaoguo{
+
+			height: 100px;
+			/*padding-top: 3px;*/
+			/*margin: 30px;*/
+		}
+		.xiaoguo li{
+			float: left;
+			margin: 0 1px;
+			cursor: pointer;
+		}
+		.xiaoguo img{
+			width: 100px;
+		}
+		thead {color:green;}
+		tbody {color:blue;}
+		tfoot {color:red;}
+
+		.bg{
+			background-color: pink;
+		}
+		.nav{
+			position: relative;
+			width: 400px;
+			height: 100%;
+			float: center;
+			color: #444;
+			line-height: 40px;
+		}
+		.nav li {
+			width: 80px;
+			float: left;
+			text-align: center;
+			text-decoration: none;
+			/*border-left: 2px solid #dcdcdc;*/
+			/*background-color: #cdcdcd;*/
+		}
+		.nav li:hover{
+			background: #dcdcda;
+		}
+		.nav li ul{
+
+		}
+		.nav li ul{
+			display:none;
+			/*position: absolute;*/
+			/*left: 2px;*/
+			list-style-type:none;
+			/*border-left: 2px solid #dcdcdc;*/
+		}
+		.nav li ul li{
+			width: 50px;
+			margin: 3px;
+			/*height: 100px;*/
+			/*border-radius: 3px;*/
+			background: pink;
+			/*border-bottom: 1px solid red;*/
+		}
+		.table{
+			width: 500px;
+			margin: 100px auto;
+			border-collapse: collapse;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<ul class="xiaoguo" id="hsx">
+			<li><img src="img/1.jpg" id="img"></li>
+			<li><img src="img/3.jpg"></li>
+			<li><img src="img/4.jpg"></li>
+			<li><img src="img/5.jpg"></li>
+			<li><img src="img/6.jpg"></li>
+		</ul>
+		<table border="1" class="table">
+			<thead>
+				<tr>
+			      <th>姓名</th>
+			      <th>科目</th>
+			      <th>成绩</th>
+			      <th>操作</th>
+			      <th>Savings</th>
+			    </tr>
+			</thead>
+			<tbody>
+				<!-- <tr>
+					<th>name</th>
+					<th>JavaScript</th>
+					<th>100</th>
+					<th><a href="#">删除</a></th>
+					<th>1234</th>
+				</tr>
+				<tr>
+					<th>name</th>
+					<th>JavaScript</th>
+					<th>100</th>
+					<th><a href="#">删除</a></th>
+					<th>1234</th>
+				</tr>
+				<tr>
+					<th>name</th>
+					<th>JavaScript</th>
+					<th>100</th>
+					<th><a href="#">删除</a></th>
+					<th>1234</th>
+				</tr>
+				<tr>
+					<th>name</th>
+					<th>JavaScript</th>
+					<th>100</th>
+					<th><a href="#">删除</a></th>
+					<th>1234</th>
+				</tr>
+				<tr>
+					<th>name</th>
+					<th>JavaScript</th>
+					<th>100</th>
+					<th><a href="#">删除</a></th>
+					<th>1234</th>
+				</tr> -->
+			</tbody>
+		</table>
+		&nbsp;
+		<table border="2">
+			<thead>
+				<tr>
+			      <th>
+			      	全选 <input type="checkbox" id="checkall" name="">
+			      </th>
+			      <th>商品</th>
+			      <th>价钱</th>
+
+			    </tr>
+			</thead>
+			<tbody  id="check">
+				<tr >
+					<th><input type="checkbox" name=""></th>
+					<th>苹果</th>
+					<th>123</th>
+				</tr>
+				<tr >
+					<th><input type="checkbox" name=""></th>
+					<td>梨</td>
+					<td>999</td>
+				</tr>
+				<tr >
+					<th><input type="checkbox" name=""></th>
+					<td>梨</td>
+					<td>999</td>
+				</tr>
+			</tbody>
+		</table>
+		<ul class="nav">
+			<li>
+				<a href="#">alacazar</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">回复</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">King</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">回复</a>
+					</li>
+				</ul>
+			<li>
+				<a href="#">Wang</a>
+				<ul>
+					<li>
+						<a href="">私信</a>
+					</li>
+					<li>
+						<a href="">评论</a>
+					</li>
+					<li>
+						<a href="">回复</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</center>	
+
+	<script type="text/javascript">
+		//动态生成表格；
+		var datas = [{
+					name:'alacazar',
+					subject:'Math',
+					score:100
+				},{
+					name:'爱新觉罗语初',
+					subject:'Math',
+					score:98
+				},{
+					name:'张飞',
+					subject:'Math',
+					score:66
+				},{
+					name:'诸葛亮',
+					subject:'Math',
+					score:101
+				}]
+
+		// 2、在tbody 中创建行，数组长度；
+		var tbody = document.querySelector('tbody');
+		for (var i = 0; i < datas.length; i++) {
+			var tr = document.createElement('tr');
+			tbody.appendChild(tr);
+			// 行中创建单元格，th单元格数量取决于每个对象中的属性个数； forx循环遍历；
+			for(var k in datas[i]){
+				//创建单元格；
+				var th = document.createElement('th');
+				// 把对象中的属性值datas[i][k] 放入th;
+				// console.log(datas[i][k]);
+				th.innerHTML = datas[i][k];
+				tr.appendChild(th);
+			}
+			//3、创建 删除 单元格；
+			var td = document.createElement('td');
+			td.innerHTML = "<a href='javascript:;'>删除</a>";
+			tr.appendChild(td);
+		}
+		// 删除操作；
+		var as = document.querySelectorAll('a');
+		for (var i = 0; i < as.length; i++) {
+			as[i].onclick = function(){
+				// this.removeChild(child);
+				tbody.removeChild(this.parentNode.parentNode);
+			}
+		}
+
+		// 下拉菜单；--------------------------------------
+		var nav = document.querySelector('.nav');
+		var lis = nav.children;
+		// console.log(lis[]);
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].onmouseover = function(){
+				this.children[1].style.display = 'block';
+			}
+			lis[i].onmouseout = function(){
+				this.children[1].style.display = 'none';
+			}
+		}
+
+		//  鼠标移动  变色操作
+		var xiaoguo = document.querySelector('.xiaoguo');
+		console.log(xiaoguo.id);
+		var imgs = document.querySelector('.xiaoguo').querySelectorAll('img');
+		// var imgs = xiaoguo.children;
+		// console.log(imgs); 
+		// console.log(imgs[0]);
+		// console.log(imgs[imgs.length-1]);
+		// 循环；
+		for (var i = 0; i < imgs.length; i++) {
+			imgs[i].onclick = function(){
+				console.log(this.src);
+				document.body.style.backgroundImage = "url("+this.src+")";
+			}
+		}
+		// ----------鼠标移动 变色----------
+		var trs = document.querySelector('tbody').querySelectorAll('tr');
+		// 循环绑定注册事件；
+		for (var i = 0; i < trs.length; i++) {
+			trs[i].onmouseover = function(){
+				console.log(123);
+				this.className = 'bg';
+			}
+			//鼠标离开；
+			trs[i].onmouseout = function(){
+				this.className = '';
+			}
+		}
+
+		// -----------------------x全选；----
+		var checkall = document.getElementById('checkall');
+		var checks = document.getElementById('check').getElementsByTagName('input');
+
+		checkall.onclick = function(){
+			console.log(this.checked);  // 当前选中状态；
+			for (var i = 0; i < checks.length; i++) {
+				checks[i].checked = this.checked; 
+			}
+		}
+
+		//步骤二；
+		for (var i = 0; i < checks.length; i++) {
+			checks[i].onclick = function(){
+				var flag = true;    // 变量，控制全选按钮是否被选中；
+				for (var i = 0; i < checks.length; i++) {
+					if (!checks[i].checked) {
+						flag = false;
+						break;
+					}
+				}
+				checkall.checked = flag;
+			}
+		}
+	</script>
+</body>
+</html>

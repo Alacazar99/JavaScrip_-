@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>5-3</title>
+	<style type="text/css">
+		.box{
+			width: 200px;
+			background: #aaa;
+			/*height: 200px;*/
+			border: 1px solid #999;
+			margin: 100px auto;
+		}
+		.box input{
+			width: 130px;
+			height: 30px;
+			outline: none;
+			background: #DDD;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<label for="">
+		</label>
+		<input type="password" name="" id="passwd">
+		<button id="func">点击</button>
+	</div>
+
+	<script type="text/javascript">
+		var passwd = document.getElementById('passwd');
+		var func = document.getElementById('func');
+		var flag = 0;
+
+		func.onclick = function(){
+			if (flag == 0){
+				passwd.type = 'text';
+				this.style.backgroundColor = 'pink';
+				flag = 1;
+			}else{
+				passwd.type = 'password';
+				this.style.width = '50px';
+				this.style.backgroundColor = 'yellow';
+				flag = 0;
+			}
+		}
+	</script>
+</body>
+</html>

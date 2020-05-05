@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>循环精灵图</title>
+</head>
+<body>
+	<ul>
+			<button >按钮1</button>
+			<button >按钮2</button>
+			<button >按钮3</button>
+			<button >按钮4</button>
+			<button >按钮5</button>
+	</ul>
+	<ul></ul>
+	<ul></ul>
+	<ul></ul>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script type="text/javascript">
+
+		// 实现按钮；
+		var bts = document.getElementsByTagName('button');
+		// var bts = bt.getElementsByTagName('button');
+		for (var i = 0; i < bts.length; i++) {
+			bts[i].onclick = function(){
+				// (1)先把所有按钮的颜色去掉，然后再变色；
+				for (var i = 0; i < bts.length; i++) {
+					bts[i].style.backgroundColor = '';
+				}
+				this.style.backgroundColor = 'pink';
+			}
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>换肤</title>
+	<style type="text/css">
+		.xiaoguo{
+			height: 200px;
+			padding-top: 3px;
+			margin: 30px;
+		}
+		.xiaoguo li{
+			float: left;
+			margin: 0 1px;
+			cursor: pointer;
+		}
+		.xiaoguo img{
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="xiaoguo">
+		<li><img src="img/1.jpg"></li>
+		<li><img src="img/3.jpg"></li>
+		<li><img src="img/4.jpg"></li>
+		<li><img src="img/5.jpg"></li>
+		<li><img src="img/6.jpg"></li>
+	</ul>
+
+
+	<script type="text/javascript">
+		// 1、获取元素；
+		var imgs = document.querySelector('.xiaoguo').querySelectorAll('img');
+		// 循环；
+		for (var i = 0; i < imgs.length; i++) {
+			imgs[i].onclick = function(){
+				console.log(this.src);
+				document.body.style.backgroundImage = "url("+this.src+")";
+			}
+		}
+	</script>
+</body>
+</html>

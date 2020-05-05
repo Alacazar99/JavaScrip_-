@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>注册事件</title>
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 30px;
+			background: pink;
+			margin: 6px;
+			text-align: center;
+		}
+		.fa{
+			width: 200px;
+			height: 200px;
+			background: #888;
+		}
+		.son{
+			position: absolute;
+			margin: 50px;
+			width: 100px;
+			height: 100px;
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	<h1><a href="https://www.baidu.com/">baiduyixia</a></h1>
+	<button>点击注册事件</button>
+	<button>方法监听注册事件</button>
+
+	<center>
+		<div class="fa">
+			<div class="son">son</div>
+		</div>
+	</center>
+
+	<ul>
+		<li>123</li>
+		<li>456</li>
+		<li>789</li>
+	</ul>
+	
+</body>
+</html>
+
+<script type="text/javascript">
+	// 禁用右键菜单；
+	document.addEventListener("contextmenu",function(e){
+		e.preventDefault();
+	})
+	// 禁止选中文字；
+	document.addEventListener('selectstart',function(e){
+		e.preventDefault();
+	})
+// 阻止事件冒泡；----------------------
+	var fa = document.querySelector('.fa');
+	var son = document.querySelector('.son');
+	son.addEventListener('click',function(e){
+		alert('son 元素；');
+		e.stopPropagation();// 阻止冒泡；后面的事件停止；（低版本不适应 e.cancelBubble = true;）
+	},false);
+	fa.addEventListener('click',function(e){
+		alert('fa 元素；');
+		// e.stopPropagation();
+	},false);
+	var divs = document.querySelector('div');
+	divs.onclick = function(e){
+		// console.log(e);   //事件对象；
+		// console.log(window.event);  //兼容性问题；
+		// e = e|| window.event;
+		console.log(e.target);  // 返回触发的对象；
+		console.log(this);
+	}
+	divs.addEventListener('click',func);
+	divs.addEventListener('mouseover',func);
+	divs.addEventListener('mouseout',func);
+	function func(e){
+		console.log(e.type);
+	}
+//事件类型---------------------
+	var btns = document.querySelectorAll('button');
+	btns[0].onclick = function(){
+		alert("hello~");
+	}
+	console.log(btns);
+	btns[1].addEventListener('click',function(){
+		alert('JJJJ');
+	})
+
+	
+	var ul = document.querySelector('ul');
+	ul.addEventListener('click', function(e){
+		// console.log(this);
+		console.log(e.target);
+	})
+
+
+// 阻止默认行为；
+	var a = document.querySelector('h1');
+	a.addEventListener('click',function(e){
+		e.preventDefault();
+		// return false;
+
+	})
+// 解除绑定；
+	divs.onclick = function(){
+		alert('解绑,只弹出一次~');
+		divs.onclick = null;
+	}
+	// divs[1].addEventListener('click',fn);  // 里面的fn函数不需要加小括号；
+	// function fn(){
+	// 	alert("0000");
+	// 	divs[1].removeEventListener('click',fn);
+	// }
+	
+
+</script>

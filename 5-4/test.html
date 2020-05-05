@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	
+</head>
+<body>
+	<!-- <div id="time">20120-10-10</div> -->
+	<ul>
+		<li>kkkkkkkkkkkkkkkkkkk</li>
+		<li>JJJJJJJJJJJJJJJJJJJ</li>
+	</ul>
+	<ul id="nav">
+		<li>huang</li>
+		<li>shi</li>
+		<li>-----------</li>
+		<li>xiang</li>
+	</ul>
+	<button id="btn">Tang  </button>
+	<div>某个时间</div>
+
+	<button id="11">图一</button>
+	<button id="22">图二</button>
+	<img src="img/1.png" title="图一。。。">
+
+	<script type="text/javascript">
+
+		var l1 = document.getElementById('11');
+		var l2 = document.getElementById('22');
+		var img = document.querySelector('img');
+
+		l1.onclick = function(){
+			img.src = 'img/2.png';
+			img.title = '方法一呀'
+		}
+		l2.onclick = function(){
+			img.src = "img/look.gif";
+			img.title = 'zhang xue you s'
+		}
+		// var nav = document.getElementById('nav');  //字符串；document.getElementById();
+		// var res = nav.getElementsByTagName('li');
+		// console.log(res);
+		// console.log(res[1]);
+		// console.log(typeof res);
+		// console.dir(res);
+		// var li = document.querySelector('li');
+		// var lis = document.querySelectorAll('li');
+		// console.log(li);
+		// console.log(lis);
+		// var body = document.body;
+		// console.log(body);
+		// var html = document.documentElement;
+		// console.log(html);
+		// 事件源；
+		// 事件类型；
+		// 事件处理程序；
+		var btn = document.getElementById('btn');
+		var div = document.querySelector('div');
+		btn.onclick = function(){
+
+				// alert('开灯啦，来电咯~ ~！~ ~');
+				// document.write('aaaaaaaaaaa');
+				console.log('aaaaaaaaaaaaa');
+				div.innerText = getTimer();
+				// style.backgroundColor="yellow";
+		}
+		function getTimer(){
+			var time = new Date();
+			var h = time.getHours();
+			h = h < 10 ? '0' + h:h;
+			var m = time.getMinutes();
+			m = m <10 ? '0' + m:m;
+			var s = time.getSeconds();
+			s = s<10 ? '0' + s:s;
+			return "当前时间是： "+h + ": " + m + ': ' + s;
+		}
+		// div.innerText = "<strong> 今天是：</strong> 星期五。"
+
+	</script>
+</body>
+</html>

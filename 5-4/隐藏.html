@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>5-3</title>
+	<style type="text/css">
+		.body{
+			background: pink;
+		}
+		.cha{
+			background: yellow;
+		}
+		.box{
+			width: 270px;
+			background: #aaa;
+			/*height: 200px;*/
+			border: 1px solid #999;
+			margin: 10px auto;
+		}
+		.box input{
+			/*width: 130px;*/
+			height: 30px;
+			outline: none;
+			background: #DDD;
+		}
+		.func{
+			background: red;
+		}
+		.change{
+			border-left: 2px;
+			background: green;
+		}
+		.mes{
+			color: blue;
+		}
+		.wrong{
+			color: red;
+		}
+		.right{
+			color: green;
+		}
+
+	</style>
+	<!-- <script type="text/javascript">
+
+	</script> -->
+</head>
+<body class="body">
+	<div class="box">
+		<input type="text" name="" id="passwd" value="手机...">
+		<button id="func" class="func">点击</button>
+		<button id="btn">隐藏</button>
+		<article class="art">
+			<button>按钮1</button>
+			<button>按钮2</button>
+			<button>按钮3</button>
+			<button>按钮4</button>
+			<button>按钮5</button>
+		</article>
+	</div>
+	<button id="open">开/关灯</button>
+
+	
+	<div class="register">
+		<input type="password" class="ipt" name="">
+		<p class="mes">请输入6-12位密码</p>
+	</div>
+
+	<script type="text/javascript">
+		
+		// <!-- 开关灯特效； -->
+		var open = document.getElementById('open');
+		var body = document.querySelector('.body');
+		var flag = 0;
+		open.onclick = function(){
+			if(flag == 0){
+				flag = 1;
+				body.className = 'cha';
+			}else{
+				flag = 0;
+				body.className = 'body';
+			}
+		}
+		var ipt = document.querySelector('.ipt');
+		var mes = document.querySelector('.mes');
+		// 注册事件，失去焦点；
+		ipt.onblur = function(){
+			if(ipt.value.length < 6 || ipt.value.length > 16){
+				alert("密码输入错误！");
+				mes.className = 'mes wrong';
+				mes.innerHTML = '您输入的密码不规范！';
+			}else{
+				mes.className = 'mes right';
+				mes.innerHTML = '恭喜您输入正确~'
+			}
+		}
+		// ？？？输入框隐藏；
+		var text = document.querySelector('input');
+		var func = document.querySelector('button');
+		func.onclick = function(){
+			this.className = 'change';
+		}
+		text.onfocus = function(){
+			console.log("javascript焦点~");
+			if(this.value == '手机...'){
+				this.value = '';
+			}
+			this.style.color = 'red';
+		}
+		text.onblur = function(){
+			console.log("失去焦点");
+			if(this.value == ''){
+				this.value = '手机...';
+			}
+			this.style.color = 'green';
+		}
+		// 整体元素隐藏；
+		var btn = document.querySelector('#btn');
+		var box = document.querySelector('.box');
+		btn.onclick = function(){
+			box.style.display = 'none';
+		}
+	</script>
+</body>
+</html>

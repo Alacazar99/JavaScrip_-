@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>鼠标事件对象</title>
+	<style type="text/css">
+		img{
+			position: absolute;
+			width: 50px;
+			top :20px;
+		}
+		.search{
+			margin: 100px;
+			width: 300px;
+		}
+		.con{
+			display: none;
+			position: absolute;
+			top: 50px;
+			border: 2px solid #Dca;
+			padding: 5px 0;
+			font-size: 20px;
+			box-shadow:0 2px 4px #d80;
+			line-height: 20px;
+			color: #333;
+		}
+		.con::before{
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: 28px;
+			left: 18px;
+			border-color: #fff transparent transparent;
+		}
+		input {
+			color: #d80;
+			height: 30px;
+		}
+		h1{
+			display: block;
+			width: 200px;
+			height: 200px;
+			background: pink;
+			margin: 30px;
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="search">
+		<div class="con"></div>
+		<input type="" name="" value="请输入您的快递单号" class="jd">
+	</div>
+	<h1></h1>
+	<!-- <img src="img/look.gif" alt=""> -->
+	<script type="text/javascript">
+		// var img = document.querySelector('img');
+		// document.addEventListener('mousemove',function(e){
+		// 	var x = e.pageX;
+		// 	var y = e.pageY;
+		// 	// console.log("X坐标：" + x, "Y坐标：" + y);
+		// 	img.style.left = x-15 + 'px';
+		// 	img.style.top = y -20+ 'px';
+		// })
+
+		// 快递单号查询案例；
+		window.addEventListener('load',function(){  
+		// 界面加载  window.addEventListener('load',function()
+			var con = document.querySelector('.con');
+			var jd = document.querySelector('.jd');
+			
+			jd.addEventListener('keyup',function(){
+				if(this.value == ''){
+					con.style.display = 'none';
+				}else{
+					con.style.display = 'block';
+					con.innerHTML = this.value;
+				}
+			})
+			jd.addEventListener('focus',function(){
+				if(jd.value == '请输入您的快递单号'){
+					jd.value = '';
+				}else if (jd.value == ''){
+					con.style.display = 'none';
+				}else{
+					con.style.display = 'block';
+				}
+			})
+			jd.addEventListener('blur',function(){
+				con.style.display = 'none';
+			})
+
+		})	
+
+		document.addEventListener('flous',function(e){
+			// 相对 可视区坐标；
+			// console.log("相对 可视区坐标  "+e.clientX);
+			// console.log("相对 可视区坐标  "+e.clientY);
+			// // 相对 页面文档的坐标；
+			console.log("相对 页面文档的坐标  "+e.pageX);
+			console.log("相对 页面文档的坐标  "+e.pageY);
+			// // 相对电脑屏幕的坐标
+			// console.log("相对电脑屏幕的坐标 "+e.screenX);
+			// console.log("相对电脑屏幕的坐标 "+e.screenY);// 
+		});
+		// 键盘事件； 顺序： keydown -> keypress -> keyup;  不区分大小写；
+		// document.addEventListener('keyup',func);
+		// document.addEventListener('keydown',func);
+		document.addEventListener('keypress',func); // 不识别功能键；
+		function func(e){
+			// console.log("键盘事件："+e.type);
+			// console.log(e['key']);
+			// console.log(e.keyCode);
+		}
+
+		window.addEventListener('resize',function(){
+			console.log(window.innerWidth);
+			var h1 = document.querySelector('h1');
+			if (window.innerWidth <= 500) {
+				h1.style.display = 'none';
+			}else{
+				h1.style.display = 'block';
+			}
+		})
+
+	</script>
+</body>
+</html>

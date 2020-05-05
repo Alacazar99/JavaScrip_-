@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>切换</title>
+	<style type="text/css">
+		.xiaoguo{
+			background-color: #999;
+			/*padding: 1px;*/
+			/*margin: 30px;*/
+			/*background: gray;*/
+		}
+		.xiaoguo li{
+			background-color: #dcdcdc;
+			float: left;
+			width: 100px;
+			/*margin: 3px;*/
+			cursor: pointer;
+			text-align: center;
+		}
+		.xiaoguo .current{
+			background-color: red;
+			display = 'block';
+		}
+		.tab_con{
+			width: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="tab_list">
+		<div  class="xiaoguo" id="hsx">
+			<li class="current">包装</li>
+			<li>独食妮</li>
+			<li>是的女率</li>
+			<li>上给独立</li>
+			<li>haode</li>
+	</div>
+	<div class="tab_con">
+		<div class="item" style="display: block;">
+			包装
+		</div>
+		<div class="item" style="display: none;">
+			独食难肥李斯丹妮
+		</div>
+		<div class="item" style="display: none;">
+			是的女率
+		</div>
+		<div class="item" style="display: none;">
+			上给女方三独立
+		</div> 
+		<div class="item" style="display: none;">
+			GGGGGGG
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var tab_list = document.querySelector('.tab_list');
+		var lis = tab_list.querySelectorAll('li');
+		var items = document.querySelectorAll('.item');
+
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].setAttribute('index',i);  //给li设置索引；
+			lis[i].onclick = function(){
+				// 清除所有；
+				for (var i = 0; i < lis.length; i++) {
+					lis[i].className = '';
+				}
+
+				this.className = 'current';
+				// xianshi 内容模块；
+				var index = this.getAttribute('index');
+				console.log(index);
+
+				// items[index].style.display = 'block';
+				for (var i = 0; i < items.length; i++) {
+					items[i].style.display = 'none';
+				}
+				items[index].style.display = 'block';  // d对应序号显示；
+			}
+		}
+
+		// // 1、获取元素；
+		// var xiaoguo = document.querySelector('.xiaoguo');
+		// console.log(xiaoguo.id);
+		// var imgs = document.querySelector('.xiaoguo').querySelectorAll('img');
+
+		// // 循环；
+		// for (var i = 0; i < imgs.length; i++) {
+		// 	imgs[i].onclick = function(){
+		// 		console.log(this.src);
+		// 		document.body.style.backgroundImage = "url("+this.src+")";
+		// 	}
+		// }
+		// // --------------------------
+		// var trs = document.querySelector('tbody').querySelectorAll('tr');
+		// // 循环绑定注册事件；
+		// for (var i = 0; i < trs.length; i++) {
+		// 	trs[i].onmouseover = function(){
+		// 		console.log(123);
+		// 		this.className = 'bg';
+		// 	}
+		// 	//鼠标离开；
+		// 	trs[i].onmouseout = function(){
+		// 		this.className = '';
+		// 	}
+		// }
+
+		// // -----------------------x全选；----
+		// var checkall = document.getElementById('checkall');
+		// var checks = document.getElementById('check').getElementsByTagName('input');
+
+		// checkall.onclick = function(){
+		// 	console.log(this.checked);  // 当前选中状态；
+		// 	for (var i = 0; i < checks.length; i++) {
+		// 		checks[i].checked = this.checked; 
+		// 	}
+		// }
+
+		// //步骤二；
+		// for (var i = 0; i < checks.length; i++) {
+		// 	checks[i].onclick = function(){
+		// 		var flag = true;    // 变量，控制全选按钮是否被选中；
+		// 		for (var i = 0; i < checks.length; i++) {
+		// 			if (!checks[i].checked) {
+		// 				flag = false;
+		// 				break;
+		// 			}
+		// 		}
+		// 		checkall.checked = flag;
+		// 	}
+		// }
+	</script>
+</body>
+</html>
