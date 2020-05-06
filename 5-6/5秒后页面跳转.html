@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>倒计时</title>
+	<style type="text/css">
+		div{
+			width: 200px;
+			height: 100px;
+			margin: 40px;
+		}
+		div span{
+			padding: 20px;
+			width: 100px;
+			height: 60px;
+			background: black;
+			color: #fff;
+			font-size: 20px;
+			line-height: 40px;
+		}
+		#clicked{
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	
+	<div>
+		<input type="" name="" value="请输入您的手机号码"><button class="btn">定时短信</button>
+	</div>
+	<button class="link">点击跳转</button>
+	<div class="div"></div>
+
+	<script type="text/javascript">
+		// 定时短信；
+		var btn = document.querySelector('.btn');
+		var time = 10;
+		btn.addEventListener('click',function(){
+			btn.disabled = true;
+			timer = setInterval(function(){
+				if(time == 0){
+					clearInterval(timer);
+					btn.disabled = false;
+					btn.innerHTML = '发送';
+					time = 5;  //设定值
+				}else{
+					btn.innerHTML = '还剩余'+time+'s';
+					time --;
+				}
+			},1000)
+		});
+
+		// 页面定时后，跳转
+		var link = document.querySelector('.link');
+		var div = document.querySelector('.div');
+		var time = 5;
+		// jump();
+		link.addEventListener('click',function(){
+			// link.disabled = true;
+			
+			temp = setInterval(jump,1000)
+		})
+		function jump(){
+			if (time == 0){
+				location.href = 'http://www.baidu.com';
+			}else{
+				div.innerHTML = '您将在'+time+"s之后跳转到百度";
+				time--;
+			}
+		}
+	</script>
+</body>
+</html>

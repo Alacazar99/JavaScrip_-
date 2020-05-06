@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+</head>
+<body>
+	<div></div>
+
+	<script type="text/javascript">
+		
+		console.log(location.search);
+		var params = location.search.substr(1);
+		console.log(params);
+		var arr = params.split('&');
+		console.log(arr);
+		var lis =  arr[0].split('=');
+		var div = document.querySelector('div');
+		div.innerHTML = lis[1] + "  欢迎您！~";
+	</script>
+</body>
+</html>

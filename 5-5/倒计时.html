@@ -31,12 +31,15 @@
 	<button  class="start">开启定时器</button>
 	<button class="stop">停止定时器</button>
 
+	<div>
+		<input type="" name="" value="请输入您的手机号码"><button class="btn">定时短信</button>
+	</div>
 	<script type="text/javascript">
-		
+		// 倒计时；
 		var hour = document.querySelector('.hour');
 		var minute = document.querySelector('.minute');
 		var second = document.querySelector('.second');
-		var inputTime = +new Date("2020-5-6 12:00:00");
+		var inputTime = +new Date("2020-5-7 12:00:00");
 		lesstime();  // 先执行一次，避免第一次刷新有空白；
 		// 开启定时器；
 		// setInterval();
@@ -71,6 +74,23 @@
  			second.innerHTML = s;
 			// return d + '天' + h +'时' + m+'分' + s + '秒';
 		}
+		// 定时短信；
+		var btn = document.querySelector('.btn');
+		var time = 10;
+		btn.addEventListener('click',function(){
+			btn.disabled = true;
+			timer = setInterval(function(){
+				if(time == 0){
+					clearInterval(timer);
+					btn.disabled = false;
+					btn.innerHTML = '发送';
+					time = 5;  //设定值
+				}else{
+					btn.innerHTML = '还剩余'+time+'s';
+					time --;
+				}
+			},1000)
+		});
 	</script>
 </body>
 </html>

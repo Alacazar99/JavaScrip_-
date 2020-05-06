@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>鼠标事件对象</title>
+	<style type="text/css">
+		img{
+			position: absolute;
+			width: 50px;
+			top :20px;
+		}
+		.search{
+			margin: 100px;
+			width: 300px;
+		}
+		.con{
+			display: none;
+			position: absolute;
+			top: 50px;
+			border: 2px solid #Dca;
+			padding: 5px 0;
+			font-size: 20px;
+			box-shadow:0 2px 4px #d80;
+			line-height: 20px;
+			color: #333;
+		}
+		.con::before{
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: 28px;
+			left: 18px;
+			border-color: #fff transparent transparent;
+		}
+		input {
+			color: #d80;
+			height: 30px;
+		}
+		.img{
+			position: relative;
+			display: block;
+			width: 240px;
+			height: 135px;
+			background: url(../img/gg.jpg) no-repeat;
+			background-size: cover;
+			border: 1px solid #ccc;
+			/*margin: 30px;*/
+			/*padding: 20px;*/
+		}
+		.mask{
+			display: none;
+			position: absolute;
+			/*top: 0;*/
+			/*left: 0;*/
+			width: 80px;
+			height: 60px;
+			background: #fede4f;
+			opacity: .3;
+			border: 1px solid #ccc;
+			cursor: move;
+		}
+		.big{
+			display: none;
+			position: absolute;
+			width: 480px;
+			height: 270px;
+			left: 242px;
+			top: 0px;
+			background-color: pink;
+			z-index: 999; /* 层级  */
+			overflow: hidden;
+		}
+		.big img{
+			/*display: none;*/
+			position: absolute;
+			/*border: 2px solid red;*/
+			top :0;
+			left: 0;
+			width: 1200px;
+			height: 675px;
+			z-index: -9; 
+		}
+		.bigImg{
+			z-index: 3;
+		}
+	</style>
+</head>
+<body>
+	<div class="search">
+		<div class="con"></div>
+		<input type="" name="" value="请输入您的快递单号" class="jd">
+	</div>
+	<!-- <h1></h1> -->
+
+	<div class="img">
+		<!-- <img src="../img/look.gif"> -->
+		<div class="mask"></div>
+		<div class="big">
+			<img src="../img/gg.jpg" alt="" class="bigImg">
+		</div>
+	</div>
+
+	
+	<!-- <img src="img/look.gif" alt=""> -->
+	<script type="text/javascript">
+		// var img = document.querySelector('img');
+		// document.addEventListener('mousemove',function(e){
+		// 	var x = e.pageX;
+		// 	var y = e.pageY;
+		// 	// console.log("X坐标：" + x, "Y坐标：" + y);
+		// 	img.style.left = x-15 + 'px';
+		// 	img.style.top = y -20+ 'px';
+		// })
+
+		// 快递单号查询案例；
+		window.addEventListener('load',function(){  
+		// 界面加载  window.addEventListener('load',function()
+			var con = document.querySelector('.con');
+			var jd = document.querySelector('.jd');
+			
+			jd.addEventListener('keyup',function(){
+				if(this.value == ''){
+					con.style.display = 'none';
+				}else{
+					con.style.display = 'block';
+					con.innerHTML = this.value;
+				}
+			})
+			jd.addEventListener('focus',function(){
+				if(jd.value == '请输入您的快递单号'){
+					jd.value = '';
+				}else if (jd.value == ''){
+					con.style.display = 'none';
+				}else{
+					con.style.display = 'block';
+				}
+			})
+			jd.addEventListener('blur',function(){
+				con.style.display = 'none';
+			})
+
+		})	
+
+		document.addEventListener('flous',function(e){
+			// 相对 可视区坐标；
+			// console.log("相对 可视区坐标  "+e.clientX);
+			// console.log("相对 可视区坐标  "+e.clientY);
+			// // 相对 页面文档的坐标；
+			console.log("相对 页面文档的坐标  "+e.pageX);
+			console.log("相对 页面文档的坐标  "+e.pageY);
+			// // 相对电脑屏幕的坐标
+			// console.log("相对电脑屏幕的坐标 "+e.screenX);
+			// console.log("相对电脑屏幕的坐标 "+e.screenY);// 
+		});
+		// 键盘事件； 顺序： keydown -> keypress -> keyup;  不区分大小写；
+		// document.addEventListener('keyup',func);
+		// document.addEventListener('keydown',func);
+		document.addEventListener('keypress',func); // 不识别功能键；
+		function func(e){
+			// console.log("键盘事件："+e.type);
+			console.log(e['key']);
+			// console.log(e.keyCode);
+		}
+		// ====================js 效果====================
+		window.addEventListener('load',function(){
+			var img = document.querySelector('.img');
+			var mask = document.querySelector('.mask');
+			var big = document.querySelector('.big');
+
+			img.addEventListener('mouseover',move)
+
+			function move(e){
+				mask.style.display = 'block';
+				big.style.display = 'block';
+			}
+
+			img.addEventListener('mouseout',function(){
+				mask.style.display = 'none';
+				big.style.display = 'none';
+			})
+			// 
+			img.addEventListener('mousemove',function(e){
+				var x = e.pageX - this.offsetLeft;
+				var y = e.pageY - this.offsetTop;
+				// console.log(x,y);
+				var maskX =x - mask.offsetWidth/2;
+				var maskY = y - mask.offsetHeight/2 ;
+				//遮挡层最大移动距离
+				var maskMax_w = img.offsetWidth-mask.offsetWidth;
+				var maskMax_h = img.offsetHeight- mask.offsetHeight;
+
+				if (maskX  <= 0){
+					maskX  = 0;
+				}else if(maskX >= maskMax_w){
+					maskX = maskMax_w;
+				};
+				if(maskY <= 0){
+					maskY = 0;
+				}else if(maskY >= maskMax_h){
+					maskY = maskMax_h;
+				}
+
+				mask.style.left = maskX + 'px';
+				mask.style.top = maskY + 'px';
+
+				// 大图片的移动距离 = 遮挡层移动距离*大图片最大移动距离/遮挡层最大移动距离
+				var bigImg = document.querySelector('.bigImg');
+				// console.log(bigImg.offsetWidth);
+				// console.log(bigImg.offsetHeight);
+
+				var bigMax_x = bigImg.offsetWidth - big.offsetWidth;
+				var bigMax_y = bigImg.offsetHeight - big.offsetHeight;
+				// console.log(bigMax_x);
+				// console.log(bigMax_y);
+				// 大图片的移动距离 X Y
+				var bigx = maskX * bigMax_x/maskMax_w;
+				var bigy = maskY * bigMax_y/maskMax_h;
+
+				bigImg.style.left = -bigx + 'px';
+				bigImg.style.top = -bigy + 'px';
+			})
+
+		})
+
+
+
+	</script>
+</body>
+</html>

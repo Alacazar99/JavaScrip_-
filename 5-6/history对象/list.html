@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>history对象</title>
+</head>
+<body>
+	<a href="index.html">list页面</a>
+	<button>后退</button>
+
+	<script type="text/javascript">
+		var btn = document.querySelector('button');
+		btn.addEventListener('click',function(){
+			history.back();
+			// history.go(-1);
+		})
+	</script>
+</body>
+</html>
