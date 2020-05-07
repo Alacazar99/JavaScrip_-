@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+	<style type="text/css">
+		.div{
+			position: absolute;
+			width: 60px;
+			height: 50px;
+			background: #DDD;
+			border: 2px solid red;
+			/**/
+			
+		}
+		.h1{
+			position: absolute;
+			top:120px;
+			/*left: 40px;*/
+			width: 80px;
+			height: 50px;
+			background: pink;
+			text-align: center;
+		}
+		button{
+			margin: 15px;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn500">点击，方块到500</button>
+	<button class="btn800">点击，方块到800</button>
+	<div class="div">
+		<!-- <span></span> -->
+	</div>
+	<div class="h1"></div>
+
+
+	<script type="text/javascript">
+		// 封装；
+		// 匀速动画；
+		function animate(obj,target){
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+			if(obj.offsetLeft == target){
+				clearInterval(obj.timer);
+				// obj.style.display = 'none'; // 消失；
+			}
+			// sleep(10); // 延时函数，单位ms
+			obj.style.left = obj.offsetLeft + 1 + 'px';
+
+			// obj.style.top = obj.offsetTop + 1 + 'px';
+		},15);
+		}
+		var sleep = function(time) {   // 延时函数
+		    var startTime = new Date().getTime() + parseInt(time, 10);
+		    while(new Date().getTime() < startTime) {}
+		};
+
+
+		var div = document.querySelector('.div');
+		var h1 = document.querySelector('.h1');
+		var btn500 = document.querySelector('.btn500');
+		var btn800 = document.querySelector('.btn800');
+
+		// 缓速动画；
+		function lowAnimate(obj,target,callback){
+			clearInterval(obj.time);
+
+			obj.time = setInterval(function(){
+				var step = (target - obj.offsetLeft)/10;
+				step = step > 0 ? Math.ceil(step):Math.floor(step);  // 正值，大取整，负值，小取整；
+				if(obj.offsetLeft == target){
+					clearInterval(obj.time);
+					// obj.style.display = 'none'; // 消失；
+					// 回调函数====；定时器结束之后；
+					if(callback){
+						callback();
+					}
+				}
+				// 
+				obj.style.left = obj.offsetLeft + step + 'px';
+			},15);
+		}
+		// 调用函数；
+		// animate(div,300);
+		
+		btn500.addEventListener('click',function(){
+			lowAnimate(div,300,function(){
+				div.style.background = 'red';
+			});
+			lowAnimate(h1,400);
+		})
+		btn800.addEventListener('click',function(){
+			lowAnimate(div,800);
+		})
+
+	</script>
+</body>
+</html>

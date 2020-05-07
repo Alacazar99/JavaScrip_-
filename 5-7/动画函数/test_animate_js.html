@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		.sliderbar{
+			position: relative;
+			margin-top: 30px;
+			margin-left: 95%; 
+			width: 100%;
+		}
+		.sliderbar span{
+			/*margin: 2px;*/
+			float: left;
+			position: absolute;
+			background: pink;
+			width: 50px;
+		}
+		.con{
+			position: absolute;
+			float: left;
+			left: 0;
+			background-color: pink;
+			width: 80px;
+			text-align: center;
+			z-index: -1;
+		}
+
+	</style>
+	<script src="animate.js"></script>
+</head>
+<body>
+	<div class="sliderbar">
+		<span><-</span>
+		<div class="con"> 问题反馈</div>
+	</div>
+	<script type="text/javascript">
+		var sliderbar = document.querySelector('.sliderbar');
+		var con = document.querySelector('.con');
+
+		sliderbar.addEventListener('mouseenter',function(){
+			console.log("FFF");
+			lowAnimate(con,-80,function(){
+				sliderbar.children[0].innerHTML = "->";
+			});
+		})
+		sliderbar.addEventListener('mouseleave',function(){
+			console.log("mouseleave");
+			lowAnimate(con,0,function(){
+				sliderbar.children[0].innerHTML = "<-";
+			});
+		})
+
+	</script>
+</body>
+</html>
