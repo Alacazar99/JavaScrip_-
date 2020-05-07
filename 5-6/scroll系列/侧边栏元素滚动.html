@@ -58,8 +58,8 @@
 			display: none;
 
 		}
-      
 	</style>
+	<script type="text/javascript" src="animate.js"></script>
 
 </head>
 <body>
@@ -111,6 +111,14 @@
 				goBack.style.display = 'none';
 			}
 		})
+
+		// 当点击【返回顶部模块】，则返回顶部；
+		goBack.addEventListener('click',function(){
+			// window.scroll(0,0);
+			// 窗口
+			lowAnimate(window,0)
+		});
+
 	</script>
 </body>
 </html>
