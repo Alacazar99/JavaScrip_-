@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script type="text/javascript" src="animate.js"></script>
+	<style type="text/css">
+
+		.c_nav{
+			position: absolute;
+			/*margin-left:auto;margin-right:auto;*/
+			width: 100%;
+			height: 80px;
+			background: green; 
+		}
+		.c_nav li{
+			/*position: relative;*/
+			list-style:none; 
+			float: left;
+			background: pink;
+			width: 100px;
+			height: 50px;
+			/*display: table-cell;*/
+            /*vertical-align:center;*/
+			text-align: center;
+			font-weight: bold;
+			margin-left:1px;
+			/*height: 50px;*/
+		}
+		/*.c_nav li:hover{
+			width: 100px;
+			height: 50px;
+			left: 40px;
+			background-image: url(img/bg.jpg); 
+			background-size: cover;
+			z-index: 10;
+		}*/
+		.bgn{
+			position: absolute;
+			width: 100px;
+			height: 50px;
+			top: 16px;
+			left: 40px;
+			background: rgb(8,8,8,.3);  /*//  可改为图片背景；*/
+			z-index: 15;
+		}
+	</style>
+</head>
+<body>
+	<div id="c_nav" class="c_nav">
+		<span class="bgn"></span>
+		<ul >
+            <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>  评论</a></li>
+			<!-- <li role="separator" class="divider"></li> -->
+
+            <li><a href="#"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>  点赞</a></li>
+			<!-- <li role="separator" class="divider"></li> -->
+
+            <li><a href="#"><span class="glyphicon glyphicon-open" aria-hidden="true"></span>  投稿请求</a></li>
+
+            <!-- <li role="separator" class="divider"></li> -->
+
+            <li><a href="#"><span class="glyphicon glyphicon-jpy" aria-hidden="true"></span>  赞赏和付费</a></li>
+            <!-- <li role="separator" class="divider"></li> -->
+
+            <li><a href="#"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span>  我收到的礼物</a></li>
+            <!-- <li role="separator" class="divider"></li> -->
+
+            <li><a href="#"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>  其他提醒</a></li>
+        </ul>
+	</div>
+
+	<script type="text/javascript">
+		window.addEventListener('load',function(){
+			//获取元素；
+			var bgn = document.querySelector('.bgn');
+			var c_nav = document.querySelector('.c_nav');
+			var lis = c_nav.querySelectorAll('li');
+			var current = 40;
+			// 给li 绑定事件；
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].addEventListener('mouseenter',function(){
+					lowAnimate(bgn,this.offsetLeft);
+				})
+
+				// lis[i].addEventListener('mouseleave',function(){
+				// 	lowAnimate(bgn,current);
+				// })
+				// lis[i].addEventListener('touchstart',function(){
+				// 	lowAnimate(bgn,this.offsetLeft);
+				// })
+			}
+		})
+	</script>
+</body>
+</html>

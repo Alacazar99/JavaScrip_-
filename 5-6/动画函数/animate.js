@@ -22,9 +22,10 @@ function lowAnimate(obj,target,callback){
 	clearInterval(obj.time);
 
 	obj.time = setInterval(function(){
-		var step = (target - window.pageYOffset)/10;
+		var step = (target - window.pageXOffset)/10;
+
 		step = step > 0 ? Math.ceil(step):Math.floor(step);  // 正值，大取整，负值，小取整；
-		if(window.pageYOffset == target){
+		if(window.pageXOffset == target){
 			clearInterval(obj.time);
 			// obj.style.display = 'none'; // 消失；
 			// 回调函数====；定时器结束之后；
@@ -33,7 +34,7 @@ function lowAnimate(obj,target,callback){
 			}
 		}
 		// 
-		// obj.style.left = window.pageYOffset + step + 'px';
-		window.scroll(0,window.pageYOffset + step);
+		obj.style.left = window.pageXOffset + step + 'px';
+		// window.scroll(0,window.pageYOffset + step);
 	},15);
 }
