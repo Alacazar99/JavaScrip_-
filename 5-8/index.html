@@ -27,14 +27,14 @@
 			margin-left:1px;
 			/*height: 50px;*/
 		}
-		/*.c_nav li:hover{
+		.c_nav li:hover{
 			width: 100px;
 			height: 50px;
 			left: 40px;
 			background-image: url(img/bg.jpg); 
 			background-size: cover;
 			z-index: 10;
-		}*/
+		}
 		.bgn{
 			position: absolute;
 			width: 100px;
@@ -43,6 +43,15 @@
 			left: 40px;
 			background: rgb(8,8,8,.3);  /*//  可改为图片背景；*/
 			z-index: 15;
+		}
+		.btn{
+			position: absolute;
+			width: 100px;
+			height: 50px;
+			top: 100px;
+			left: 40px;
+			background: #ccc;
+			box-shadow:0  2px 2px 2px solid #bbb;
 		}
 	</style>
 </head>
@@ -69,7 +78,7 @@
             <li><a href="#"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>  其他提醒</a></li>
         </ul>
 	</div>
-
+	<div class="btn"></div>
 	<script type="text/javascript">
 		window.addEventListener('load',function(){
 			//获取元素；
@@ -82,7 +91,6 @@
 				lis[i].addEventListener('mouseenter',function(){
 					lowAnimate(bgn,this.offsetLeft);
 				})
-
 				// lis[i].addEventListener('mouseleave',function(){
 				// 	lowAnimate(bgn,current);
 				// })
@@ -90,7 +98,36 @@
 				// 	lowAnimate(bgn,this.offsetLeft);
 				// })
 			}
+
+			// 手指触屏 DOM元素移动事件
+			// bgn.addEventListener('touchmove',function(e){
+			// 	console.log(e.targetTouches[0]);
+			// })
+
+			var btn = document.querySelector('.btn');
+			// 手指初始坐标；
+			var startX = 0;
+			var startY = 0;
+			btn.addEventListener('touchstart',function(e){
+				console.log(e.targetTouches[0]);
+				startX = e.targetTouches[0].pageX;
+				startY = e.targetTouches[0].pageY;
+				x = this.offsetLeft;
+				y = this.offsetTop;
+			})
+			btn.addEventListener('touchmove',function(e){
+				// console.log(e.targetTouches[0]);
+				var moveX = e.targetTouches[0].pageX - startX;
+				var moveY = e.targetTouches[0].pageY - startY;
+				// 移动距离： 盒子原来位置 + 手指移动的距离；
+				this.style.left = x + moveX + 'px';
+				this.style.top = y + moveY + 'px';
+				e.preventDefault();  // 阻止屏幕滚动的默认行为；
+			})
+
+
 		})
+
 	</script>
 </body>
 </html>
